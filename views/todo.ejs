@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+
+    <%
+    if(overcheck == true){
+    %>
+    <script type="text/javascript">
+        alert('마감기한이 지난 TODO가 '+ <%number%>+'개 있습니다.');
+    </script>
+    <%
+    }
+    %>
+    <%
+    if(correct == false){
+    %>
+    <script type="text/javascript">
+        alert('DB 저장에 실패하였습니다. 다시 시도해주세요.');
+    </script>
+    <%
+    }
+    %>
+    </body>
+</html>

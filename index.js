@@ -1,3 +1,4 @@
+var express = require('express');
 var app = express();
 const port = 3000;
 var bodyParser = require('body-parser');
@@ -6,11 +7,21 @@ var session = require('express-session')
 var TodoSchema;
 var TodoModel;
 var ejs = require('ejs');
-app.set('view engine','ejs');
+var _number;
+require('date-utils');
+var newDate = new Date();
+var time = newDate.toFormat('YYYY-MM-DD');
+app.set('views engine','ejs');
 app.set('views','./views');
 app.use(bodyParser.urlencoded({extended:false}));
 var over;
 var todoArray = [];
+function over_check(){
+    TodoModel.find({date:{$gt:time}},(err,result)=>{
+        _number = result.length;
+        over = true;
+    })
+}
 function todolist_fill(){
     TodoModel.find({},(err,result)=>{
         for (var i=0;i<result.length;i++)
@@ -36,10 +47,12 @@ function connectDB(){
     });
     db.on('disconnected', connectDB);
 }
+app.post('/todo_modify',(req,res)=>{
 
+});
 app.get('/todo_modify',(req,res)=>{
     res.render('todo_modify',{object_arr:todoArray});
-})
+});
 
 app.post('/todo',(req,res)=>{
     var _title = req.body.title;
@@ -55,16 +68,16 @@ app.post('/todo',(req,res)=>{
     res.render('todo',{correct:_correct});
 })
 
-
-
 app.get('/todo',(req,res)=>{
-    res.render('todo',{object_arr:todoArray, overcheck: over});
+    res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
 })
 app.get('/', (req,res)=>{
     res.redirect('/todo');
 })
 app.listen(port,()=>{
    console.log(`${port} connected.`);
-   connectDB();
-   todolist_fill();
+   //connectDB();
+   //todolist_fill();
+   //over_check();
+    console.log(time);
 });
