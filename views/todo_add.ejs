@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todo List 추가</title>
+    </head>
+    <body>
+        <p>
+            <h1>Todo List 추가</h1>
+        </p>
+        <form action="todo_add" method="post">
+            <p><input type="text" name = "title" placeholder="제목"></p>
+            <p><textarea name="content" placeholder="내용"></textarea></p>
+            <p><input type="text" name = "limit" placeholder="마감 시간, 양식 YYYY-MM-DD, 원하지 않을시 빈칸"></p>
+            <p><input type="submit" value="제출"></p>
+        </form>
+        <%
+        if(correct == false){
+        %>
+            <script type="text/javascript">
+                alert('DB 저장에 실패하였습니다. 다시 시도해주세요.');
+            </script>
+        <%
+        }
+        %>
+    </body>
+</html>

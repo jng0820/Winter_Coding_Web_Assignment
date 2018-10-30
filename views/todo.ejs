@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Todo List</title>
     </head>
     <body>
-
+    <% var _list = JSON.stringify(object_arr)
+    console.log(_list);
+        _list = JSON.parse(_list)
+    console.log(_list);console.log(_list.length);
+    %>
+    <% for(var i=0;i<_list.length;i++) {%>
+        <li><%= _list[i] +'수정 삭제 완료'%></li>
+    <% }
+    %>
     <%
     if(overcheck == true){
     %>
     <script type="text/javascript">
-        alert('마감기한이 지난 TODO가 '+ <%number%>+'개 있습니다.');
-    </script>
-    <%
-    }
-    %>
-    <%
-    if(correct == false){
-    %>
-    <script type="text/javascript">
-        alert('DB 저장에 실패하였습니다. 다시 시도해주세요.');
+        alert('마감기한이 지난 TODO가 '+ <%= number %>+'개 있습니다.');
     </script>
     <%
     }
