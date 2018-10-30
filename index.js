@@ -26,7 +26,7 @@ function todolist_fill(){
     TodoModel.find({},{priority:-1},(err,result)=>{
         for (var i=0;i<result.length;i++)
         {
-           todoArray.push({title:result._doc.title,content:result._doc.content,date:result._doc.date,priority:result._doc.priority});
+            todoArray.push({title:result._doc.title,content:result._doc.content,date:result._doc.date,priority:result._doc.priority});
         }
         over_check();
     });
@@ -80,6 +80,6 @@ app.get('/', (req,res)=>{
     res.redirect('/todo');
 })
 app.listen(port,()=>{
-   console.log(`${port} connected.`);
-   connectDB();
+    console.log(`${port} connected.`);
+    connectDB();
 });
