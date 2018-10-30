@@ -1,28 +1,28 @@
-»õ·Î¿î TODO(Á¦¸ñ + ³»¿ë)¸¦ ÀÛ¼ºÇÑ´Ù
-- web page¿¡¼­ post ¹æ½ÄÀ¸·Î Á¦¸ñ, ³»¿ë Àü¼Û ÇÏ¸é DB¿¡ ÀúÀå
+ìƒˆë¡œìš´ TODO(ì œëª© + ë‚´ìš©)ë¥¼ ìž‘ì„±í•œë‹¤
+- web pageì—ì„œ post ë°©ì‹ìœ¼ë¡œ ì œëª©, ë‚´ìš© ì „ì†¡ í•˜ë©´ DBì— ì €ìž¥
 
-»ç¿ëÀÚÀÇ ¼±ÅÃ¿¡ ÀÇÇØ TODO¿¡´Â ¸¶°¨ ±âÇÑÀ» ³ÖÀ» ¼ö ÀÖ´Ù.
-- ¸¶°¨±â°£À» ¿øÇÏ´Â °æ¿ì DB¿¡ ÀúÀåÇÒ¶§ date°ªÀ» ³Ö°í
-¿øÇÏÁö ¾ÊÀ»°æ¿ì null°ªÀ¸·Î À¯Áö
+ì‚¬ìš©ìžì˜ ì„ íƒì— ì˜í•´ TODOì—ëŠ” ë§ˆê° ê¸°í•œì„ ë„£ì„ ìˆ˜ ìžˆë‹¤.
+- ë§ˆê°ê¸°ê°„ì„ ì›í•˜ëŠ” ê²½ìš° DBì— ì €ìž¥í• ë•Œ dateê°’ì„ ë„£ê³ 
+ì›í•˜ì§€ ì•Šì„ê²½ìš° nullê°’ìœ¼ë¡œ ìœ ì§€
 
-¿ì¼±¼øÀ§¸¦ Á¶ÀýÇÒ ¼ö ÀÖ´Ù.
-- DB¿¡ ÀúÀåÇÒ ¶§ Ã³À½ Priority´Â 1, 
-  »ç¿ëÀÚ°¡ ´­·¯¼­ º¼¶§¸¶´Ù Priority 1¾¿ Áõ°¡ÇØ¼­ DB¿¡ »ðÀÔ.
-  ¸¶°¨½Ã°£ÀÌ ÃÊ°úµÈ°ÍÀº ³ôÀº Priority ºÎ¿©
+ìš°ì„ ìˆœìœ„ë¥¼ ì¡°ì ˆí•  ìˆ˜ ìžˆë‹¤.
+- DBì— ì €ìž¥í•  ë•Œ ì²˜ìŒ PriorityëŠ” 1, 
+  ì‚¬ìš©ìžê°€ ëˆŒëŸ¬ì„œ ë³¼ë•Œë§ˆë‹¤ Priority 1ì”© ì¦ê°€í•´ì„œ DBì— ì‚½ìž….
+  ë§ˆê°ì‹œê°„ì´ ì´ˆê³¼ëœê²ƒì€ ë†’ì€ Priority ë¶€ì—¬
 
-¿Ï·á Ã³¸®¸¦ ÇÒ ¼ö ÀÖ´Ù.
-- ¿Ï·á ´©¸¦ ½Ã DB ¿Ï·á¿©ºÎ¿¡ True »ðÀÔ, ¿Ï·á½Ã ¸¶°¨±âÇÑ ¹«½ÃÇÏ¸ç ¿ì¼±¼øÀ§ 0ÀÌ¸ç ¿ì¼±¼øÀ§ Áõ°¡ÇÏÁö ¾Ê°ÔÇÔ.
+ì™„ë£Œ ì²˜ë¦¬ë¥¼ í•  ìˆ˜ ìžˆë‹¤.
+- ì™„ë£Œ ëˆ„ë¥¼ ì‹œ DB ì™„ë£Œì—¬ë¶€ì— True ì‚½ìž…, ì™„ë£Œì‹œ ë§ˆê°ê¸°í•œ ë¬´ì‹œí•˜ë©° ìš°ì„ ìˆœìœ„ 0ì´ë©° ìš°ì„ ìˆœìœ„ ì¦ê°€í•˜ì§€ ì•Šê²Œí•¨.
 
-¸¶°¨±âÇÑÀÌ Áö³­ TODO¿¡ ´ëÇØ ¾Ë¸²À» ³ëÃâÇÑ´Ù.
-- ÇöÀç½Ã°£°ú ºñ±³ÇÏ¿© ¸¶°¨±âÇÑ Áö³­°Í °¹¼ö Ã¼Å©ÇØ¼­ ejs·Î º¸³» alert ¶ç¿ò
+ë§ˆê°ê¸°í•œì´ ì§€ë‚œ TODOì— ëŒ€í•´ ì•Œë¦¼ì„ ë…¸ì¶œí•œë‹¤.
+- í˜„ìž¬ì‹œê°„ê³¼ ë¹„êµí•˜ì—¬ ë§ˆê°ê¸°í•œ ì§€ë‚œê²ƒ ê°¯ìˆ˜ ì²´í¬í•´ì„œ ejsë¡œ ë³´ë‚´ alert ë„ì›€
 
-TODO ¸ñ·ÏÀ» º¼ ¼ö ÀÖ´Ù.
-- DB¿¡¼­ ´Ù ¹Þ¾Æ¿Í¼­ priorityº°·Î ³»¸²Â÷¼ø Á¤·ÄÇÏ¿© Á¦¸ñ¸¸ º¸¿©ÁÜ
+TODO ëª©ë¡ì„ ë³¼ ìˆ˜ ìžˆë‹¤.
+- DBì—ì„œ ë‹¤ ë°›ì•„ì™€ì„œ priorityë³„ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬í•˜ì—¬ ì œëª©ë§Œ ë³´ì—¬ì¤Œ
 
-TODO ³»¿ëÀ» ¼öÁ¤ÇÒ ¼ö ÀÖ´Ù.
-- TODO List¿¡¼­ Á¦¸ñÀ» Å¬¸¯ÇÒ ½Ã getÀ¸·Î °¢ ÆäÀÌÁö¿¡ ¸Â°Ô ¶ç¿öÁÖ¸ç idx°ª Ã£¾Æ¼­ value
+TODO ë‚´ìš©ì„ ìˆ˜ì •í•  ìˆ˜ ìžˆë‹¤.
+- TODO Listì—ì„œ ì œëª©ì„ í´ë¦­í•  ì‹œ getìœ¼ë¡œ ê° íŽ˜ì´ì§€ì— ë§žê²Œ ë„ì›Œì£¼ë©° idxê°’ ì°¾ì•„ì„œ value
 
-TODO Ç×¸ñÀ» »èÁ¦ÇÒ ¼ö ÀÖ´Ù.
-- »èÁ¦ ´©¸¦ ½Ã DB¿¡¼­ »èÁ¦
+TODO í•­ëª©ì„ ì‚­ì œí•  ìˆ˜ ìžˆë‹¤.
+- ì‚­ì œ ëˆ„ë¥¼ ì‹œ DBì—ì„œ ì‚­ì œ
 
-DB¿¡ µé¾î°¥ Ç×¸ñ : Á¦¸ñ, ³»¿ë, ³¯Â¥, ¿ì¼±¼øÀ§, ¿Ï·á¿©ºÎ
+DBì— ë“¤ì–´ê°ˆ í•­ëª© : ì œëª©, ë‚´ìš©, ë‚ ì§œ, ìš°ì„ ìˆœìœ„, ì™„ë£Œì—¬ë¶€
