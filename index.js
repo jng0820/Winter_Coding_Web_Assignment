@@ -10,7 +10,7 @@ var TodoSchema;
 var TodoModel = null;
 var ejs = require('ejs');
 var _number = 0;
-var _correct = true
+var _correct = true;
 app.set('view engine','ejs');
 app.set('views','./views');
 app.use(bodyParser.urlencoded({extended:false}));
@@ -21,19 +21,18 @@ var time;
 function format_date(){
     time = now.getFullYear();
     if(Number(now.getMonth())+1 < 10)
-        time += '-0'+(Number(now.getMonth())+1)
-    else time += '-' +(Number(now.getMonth())+1)
+        time += '-0'+(Number(now.getMonth())+1);
+    else time += '-' +(Number(now.getMonth())+1);
     if(Number(now.getDate()) < 10)
-        time += '-0'+(Number(now.getDate()))
+        time += '-0'+(Number(now.getDate()));
     else time += '-' +(Number(now.getDate()))
 
 }
 function todolist_fill(){
-    todoArray = [];
-    _number = 0;
-    over = false;
-
     TodoModel.find().sort({priority:-1,date:1}).exec((err,result)=>{
+        todoArray = [];
+        _number = 0;
+        over = false;
         for (var i=0;i<result.length;i++)
         {
             todoArray.push({title:result[i]._doc.title,content:result[i]._doc.content,date:result[i]._doc.date,priority:result[i]._doc.priority,finish:result[i]._doc.finish});
@@ -52,7 +51,7 @@ function todolist_fill(){
     });
 }
 function connectDB(){
-    var dbUrl = "mongodb://localhost:27017/WC"
+    var dbUrl = "mongodb://localhost:27017/WC";
 
     mongoose.connect(dbUrl);
     db = mongoose.connection;
@@ -85,7 +84,7 @@ app.post('/todo_modify',(req,res)=> {
         if(req.body.limit != "")
             var _date = req.body.limit;
         else var _date = todoArray[idx]["date"];
-        var temp_arr = {title: _title, content: _content,priority:todoArray[idx]["priority"] ,date: _date,finish:todoArray[idx]["finish"]}
+        var temp_arr = {title: _title, content: _content,priority:todoArray[idx]["priority"] ,date: _date,finish:todoArray[idx]["finish"]};
         TodoModel.update({
             title: todoArray[idx]["title"],
             date: todoArray[idx]["date"]
@@ -108,12 +107,10 @@ app.get('/todo_finish',(req,res)=> {
                 date: todoArray[idx]["date"]
             }, {$set: todoArray[idx]}, (err, out) => {
             });
-            todolist_fill();
-        }
-        res.redirect('/todo/' + idx);
         }
     }
-)
+    res.redirect('/todo/'+idx);
+});
 
 app.get('/todo_modify/:id',(req,res)=>{
     var idx = req.params.id;
@@ -131,7 +128,7 @@ app.post('/todo_add',(req,res)=>{
             _correct = false
         }
         todolist_fill();
-    })
+    });
     res.render('todo_add',{correct:_correct});
 });
 
@@ -148,37 +145,39 @@ app.get('/todo_delete',(req,res)=>{
     }
     res.redirect('/todo');
 
-})
+});
 
 app.get(['/todo','/todo/:id'],(req,res)=>{
     var idx = req.params.id;
+    todolist_fill();
     if(idx == "todo_add")
-        res.redirect('/todo_add')
+        res.redirect('/todo_add');
     if(idx){
         res.cookie('idx', idx,{signed:true});
         idx = Number(idx);
+        if(todoArray[idx]["finish"] == false){
         todoArray[idx].priority += 1;
-        TodoModel.update({
-            title: todoArray[idx]["title"],
-            date: todoArray[idx]["date"]
-        }, {$set: todoArray[idx]}, (err, out) => {});
-
+            TodoModel.update({
+                title: todoArray[idx]["title"],
+                date: todoArray[idx]["date"]
+            }, {$set: todoArray[idx]}, (err, out) => {todolist_fill()});
+        }
         res.render("todo_watch",{object_arr:todoArray[idx],idx:idx});
     }
     else res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
 
-})
+});
 app.get('/todo_add',(req,res)=>{
     res.render('todo_add',{correct:null});
 });
 
 app.get('/todo',(req,res)=>{
-})
+});
 app.get('/', (req,res)=>{
     res.redirect('/todo');
-})
+});
 app.listen(port,()=>{
     console.log(`${port} connected.`);
     connectDB();
     format_date();
-})
+});

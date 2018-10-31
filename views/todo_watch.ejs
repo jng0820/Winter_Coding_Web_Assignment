@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <title><%= object_arr["title"]%><% if(object_arr["finish"]==true){%>(완료)<%}%></title>
-    </head>
-    <body>
-        <article>
-            <h1>&nbsp;&nbsp;<%= object_arr["title"] %><% if(object_arr["finish"]==true){%>(완료)<%}%></h1>
-            <p> <%= object_arr["content"] %></p>
-        </article>
-        <br> <%if(object_arr["date"]!="" && object_arr["finish"]==false){%> 마감일 : <%= object_arr["date"]%><%}%>
-        <br><br>
-        <a href="/todo_modify/<%=idx%>">수정</a>&nbsp; <a href="/todo_delete/">삭제&nbsp; <a href="/todo_finish/">완료&nbsp;<br>
-                <a href="/todo/">목록으로 돌아가기</a>
-    </body>
+    <title><%= object_arr["title"] %>
+        <% if(object_arr["finish"] == true){ %>(완료)
+        <% } %>
+    </title>
+</head>
+<body>
+<article>
+    <h1>&nbsp;&nbsp;<%= object_arr["title"] %>
+        <% if(object_arr["finish"] == true){ %>(완료)
+        <% } %>
+    </h1>
+    <p> <%= object_arr["content"] %></p>
+</article>
+<br>
+<% if(object_arr["date"] != "" && object_arr["finish"] == false){ %> 마감일 : <%= object_arr["date"] %>
+<% } %>
+<br><br>
+<a href="/todo_modify/<%= idx %>">수정</a>&nbsp; <a href="/todo_delete/">삭제&nbsp; <a href="/todo_finish/">완료&nbsp;<br>
+        <a href="/todo/">목록으로 돌아가기</a>
+</body>
 </html>
