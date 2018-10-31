@@ -10,14 +10,26 @@
         <form action="todo_add" method="post">
             <p><input type="text" name = "title" placeholder="제목"></p>
             <p><textarea name="content" placeholder="내용"></textarea></p>
-            <p><input type="text" name = "limit" placeholder="마감 시간, 양식 YYYY-MM-DD, 원하지 않을시 빈칸"></p>
-            <p><input type="submit" value="제출"></p>
+             Optional<br>
+            마감 시간(양식 YYYY-MM-DD, 원하지 않을경우 빈칸)
+            <p><input type="text" name = "limit" placeholder=""></p>
+            <p><input type="submit" value="저장"></p>
         </form>
+        <a href="todo">목록으로 돌아가기</a>
         <%
         if(correct == false){
         %>
             <script type="text/javascript">
                 alert('DB 저장에 실패하였습니다. 다시 시도해주세요.');
+            </script>
+        <%
+        }
+        %>
+        <%
+        if(correct == true){
+        %>
+            <script type="text/javascript">
+                alert('성공적으로 저장하였습니다.');
             </script>
         <%
         }

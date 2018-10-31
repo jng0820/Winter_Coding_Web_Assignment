@@ -4,15 +4,17 @@
         <title>Todo List</title>
     </head>
     <body>
+    &nbsp;&nbsp;&nbsp;<h1>&nbsp;&nbsp;&nbsp;My Todo List</h1>
+    <ul>
     <% var _list = JSON.stringify(object_arr)
-    console.log(_list);
-        _list = JSON.parse(_list)
-    console.log(_list);console.log(_list.length);
+    _list = JSON.parse(_list)
     %>
     <% for(var i=0;i<_list.length;i++) {%>
-        <li><%= _list[i] +'수정 삭제 완료'%></li>
+        <li><a href="/todo/<%= i%>"><%= _list[i]["title"]%></a> &nbsp;   <% if(_list[i]["date"]!="" &&_list[i]["finish"]==false){%>마감일 : <%= _list[i]["date"]%><%}%><% if(_list[i]["finish"]==true){%>(완료)<%}%></li>
     <% }
     %>
+    </ul>
+    <br><a href="todo_add">추가하기</a>
     <%
     if(overcheck == true){
     %>
