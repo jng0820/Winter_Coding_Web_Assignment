@@ -18,6 +18,8 @@ var over;
 var todoArray = [];
 var now = new Date;
 var time;
+var modify_check;
+var delete_check;
 function format_date(){
     time = now.getFullYear();
     if(Number(now.getMonth())+1 < 10)
@@ -74,7 +76,7 @@ function connectDB(){
 app.post('/todo_modify',(req,res)=> {
     if (req.signedCookies.idx) {
         var idx = Number(req.signedCookies.idx);
-        _correct = true;
+        modify_check = true;
         if(req.body.title != "")
             var _title = req.body.title;
         else var _title = todoArray[idx]["title"];
@@ -89,9 +91,8 @@ app.post('/todo_modify',(req,res)=> {
             title: todoArray[idx]["title"],
             date: todoArray[idx]["date"]
         }, {$set: temp_arr}, (err, out) => {
-            if (err) _correct = false;
+            if (err) modify_check = false;
             todolist_fill();
-
         });
         res.redirect('/todo/'+idx);
     }
@@ -109,12 +110,12 @@ app.get('/todo_finish',(req,res)=> {
             });
         }
     }
-    res.redirect('/todo/'+idx);
+    res.redirect('/todo_modify/'+idx);
 });
 
 app.get('/todo_modify/:id',(req,res)=>{
     var idx = req.params.id;
-    res.render('todo_modify',{object_arr:todoArray[idx],correct:null,idx:idx});
+    res.render('todo_modify',{object_arr:todoArray[idx],correct:modify_check,idx:idx});
 });
 app.post('/todo_add',(req,res)=>{
     _correct = true;
@@ -134,11 +135,13 @@ app.post('/todo_add',(req,res)=>{
 
 app.get('/todo_delete',(req,res)=>{
     if (req.signedCookies.idx) {
+        delete_check=true;
         idx = Number(req.signedCookies.idx);
         TodoModel.remove({
             title: todoArray[idx]["title"],
             date: todoArray[idx]["date"]
         }, (err, out) => {
+            if(err) delete_check = false;
             todolist_fill();
         });
 
@@ -149,6 +152,7 @@ app.get('/todo_delete',(req,res)=>{
 
 app.get(['/todo','/todo/:id'],(req,res)=>{
     var idx = req.params.id;
+    modify_check = null;
     todolist_fill();
     if(idx){
         res.cookie('idx', idx,{signed:true});
