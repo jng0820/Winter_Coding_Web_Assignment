@@ -22,6 +22,6 @@ localhost:3000/
 
 혹은 
 
-http://18.223.131.138:3000/
+http://ec2-18-223-131-138.us-east-2.compute.amazonaws.com:3000/
 
 (AWS서버에 올려둠)
