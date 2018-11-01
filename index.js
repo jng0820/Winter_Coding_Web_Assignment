@@ -84,7 +84,7 @@ app.post('/todo_modify',(req,res)=> {
         if(req.body.limit != "")
             var _date = req.body.limit;
         else var _date = todoArray[idx]["date"];
-        var temp_arr = {title: _title, content: _content,priority:todoArray[idx]["priority"] ,date: _date,finish:todoArray[idx]["finish"]};
+        var temp_arr = {title: _title, content: _content,priority:todoArray[idx]["priority"] ,date: _date,finish:false};
         TodoModel.update({
             title: todoArray[idx]["title"],
             date: todoArray[idx]["date"]
@@ -150,8 +150,6 @@ app.get('/todo_delete',(req,res)=>{
 app.get(['/todo','/todo/:id'],(req,res)=>{
     var idx = req.params.id;
     todolist_fill();
-    if(idx == "todo_add")
-        res.redirect('/todo_add');
     if(idx){
         res.cookie('idx', idx,{signed:true});
         idx = Number(idx);
@@ -164,7 +162,10 @@ app.get(['/todo','/todo/:id'],(req,res)=>{
         }
         res.render("todo_watch",{object_arr:todoArray[idx],idx:idx});
     }
-    else res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
+    else{
+        res.cookie('idx', null,{signed:true});
+        res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
+    }
 
 });
 app.get('/todo_add',(req,res)=>{
