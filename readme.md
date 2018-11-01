@@ -6,8 +6,7 @@ $ sudo apt install nodejs
 mongoDB install
 
 
-$sudo apt-get install -y mongodb-org
-
+$apt-get install mongodb-clients mongodb-server
 
 mongodb service apply
 
