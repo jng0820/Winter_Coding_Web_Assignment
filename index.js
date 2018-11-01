@@ -110,12 +110,12 @@ app.get('/todo_finish',(req,res)=> {
             });
         }
     }
-    res.redirect('/todo_modify/'+idx);
+    res.redirect('/todo/'+idx);
 });
 
 app.get('/todo_modify/:id',(req,res)=>{
     var idx = req.params.id;
-    res.render('todo_modify',{object_arr:todoArray[idx],correct:modify_check,idx:idx});
+    res.render('todo_modify',{object_arr:todoArray[idx],idx:idx});
 });
 app.post('/todo_add',(req,res)=>{
     _correct = true;
@@ -152,7 +152,6 @@ app.get('/todo_delete',(req,res)=>{
 
 app.get(['/todo','/todo/:id'],(req,res)=>{
     var idx = req.params.id;
-    modify_check = null;
     todolist_fill();
     if(idx){
         res.cookie('idx', idx,{signed:true});
@@ -164,9 +163,10 @@ app.get(['/todo','/todo/:id'],(req,res)=>{
                 date: todoArray[idx]["date"]
             }, {$set: todoArray[idx]}, (err, out) => {todolist_fill()});
         }
-        res.render("todo_watch",{object_arr:todoArray[idx],idx:idx});
+        res.render("todo_watch",{object_arr:todoArray[idx],correct:modify_check,idx:idx});
     }
     else{
+        modify_check = null
         res.cookie('idx', null,{signed:true});
         res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
     }
@@ -176,8 +176,6 @@ app.get('/todo_add',(req,res)=>{
     res.render('todo_add',{correct:null});
 });
 
-app.get('/todo',(req,res)=>{
-});
 app.get('/', (req,res)=>{
     res.redirect('/todo');
 });
@@ -185,4 +183,5 @@ app.listen(port,()=>{
     console.log(`${port} connected.`);
     connectDB();
     format_date();
+    console.log(time);
 });

@@ -20,5 +20,23 @@
 <br><br>
 <a href="/todo_modify/<%= idx %>">수정</a>&nbsp; <a href="/todo_delete/">삭제&nbsp; <a href="/todo_finish/">완료&nbsp;<br>
         <a href="/todo/">목록으로 돌아가기</a>
+        <%
+        if(correct == false){
+        %>
+            <script type="text/javascript">
+                alert('DB 저장에 실패하였습니다. 다시 시도해주세요.');
+            </script>
+        <%
+        }
+        %>
+        <%
+        if(correct == true){
+        %>
+            <script type="text/javascript">
+                alert('성공적으로 수정하였습니다.');
+            </script>
+        <%
+        }
+        %>
 </body>
 </html>
