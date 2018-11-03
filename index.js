@@ -31,6 +31,7 @@ function format_date(){
 
 }
 function todolist_fill(){
+    format_date();
     TodoModel.find().sort({priority:-1,date:1}).exec((err,result)=>{
         todoArray = [];
         _number = 0;
@@ -182,6 +183,4 @@ app.get('/', (req,res)=>{
 app.listen(port,()=>{
     console.log(`${port} connected.`);
     connectDB();
-    format_date();
-    console.log(time);
 });
