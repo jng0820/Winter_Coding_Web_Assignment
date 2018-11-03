@@ -1,16 +1,26 @@
+git install
+
+$ sudo apt install git
+
+git clone
+
+$ git clone https://github.com/jng0820/Winter_Coding_Web_Assignment.git
+
 node js install
 
 $ sudo apt install nodejs
 
+$ sudo apt install nodejs-legacy
 
 mongoDB install
 
 
-$apt-get install mongodb-clients mongodb-server
+$sudo apt-get install mongodb-clients mongodb-server
 
 
 web server start
 
+$cd Winter_Coding_Web_Assignment/
 
 $node index.js
 
