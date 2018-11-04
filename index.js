@@ -33,8 +33,8 @@ function format_date(){
 }
 function todolist_fill(){
     TodoModel.find().sort({priority:-1,date:1}).exec((err,result)=>{
-        format_date();
         todoArray = [];
+        format_date();
         _number = 0;
         over = false;
         for (var i=0;i<result.length;i++)
@@ -154,25 +154,45 @@ app.get('/todo_delete',(req,res)=>{
 
 app.get(['/todo','/todo/:id'],(req,res)=>{
     var idx = req.params.id;
-    todolist_fill();
     if(idx){
-        res.cookie('idx', idx,{signed:true});
         idx = Number(idx);
-        res.render("todo_watch",{object_arr:todoArray[idx],correct:modify_check,idx:idx});
+        res.cookie('idx', idx,{signed:true});
         if(todoArray[idx]["finish"] == false){
-        todoArray[idx].priority += 1;
+            todoArray[idx].priority += 1;
             TodoModel.update({
                 title: todoArray[idx]["title"],
                 date: todoArray[idx]["date"]
-            }, {$set: todoArray[idx]}, (err, out) => {todolist_fill()});
+            }, {$set: todoArray[idx]}, (err, out) => {});
         }
+        res.render("todo_watch",{object_arr:todoArray[idx],correct:modify_check,idx:idx});
 
     }
     else{
-
-        modify_check = null
+        modify_check = null;
         res.cookie('idx', null,{signed:true});
-        res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
+        TodoModel.find().sort({priority:-1,date:1}).exec((err,result)=>{
+            todoArray = [];
+            format_date();
+            _number = 0;
+            over = false;
+            for (var i=0;i<result.length;i++)
+            {
+                todoArray.push({title:result[i]._doc.title,content:result[i]._doc.content,date:result[i]._doc.date,priority:result[i]._doc.priority,finish:result[i]._doc.finish});
+                if(todoArray[i]["date"] < time && todoArray[i]["date"] != "" && todoArray[i]["finish"] != true) {
+                    over = true;
+                    _number += 1;
+                    if(todoArray[i]["priority"]<100000) {
+                        todoArray[i]["priority"] += 100000;
+                        TodoModel.update({
+                            title: todoArray[i]["title"],
+                            date: todoArray[i]["date"]
+                        }, {$set: todoArray[i]}, (err, out) => {});
+                    }
+                }
+            }
+            res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
+        });
+
     }
 
 });
