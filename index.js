@@ -154,7 +154,6 @@ app.get('/todo_delete',(req,res)=>{
 
 app.get(['/todo','/todo/:id'],(req,res)=>{
     var idx = req.params.id;
-    todolist_fill();
     if(idx){
         res.cookie('idx', idx,{signed:true});
         idx = Number(idx);
@@ -168,6 +167,7 @@ app.get(['/todo','/todo/:id'],(req,res)=>{
         res.render("todo_watch",{object_arr:todoArray[idx],correct:modify_check,idx:idx});
     }
     else{
+        todolist_fill();
         modify_check = null
         res.cookie('idx', null,{signed:true});
         res.render('todo',{object_arr:todoArray, overcheck: over,number:_number});
