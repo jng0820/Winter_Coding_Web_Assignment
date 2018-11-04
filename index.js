@@ -16,11 +16,12 @@ app.set('views','./views');
 app.use(bodyParser.urlencoded({extended:false}));
 var over;
 var todoArray = [];
-var now = new Date;
+var now;
 var time;
 var modify_check;
 var delete_check;
 function format_date(){
+    now = new Date;
     time = now.getFullYear();
     if(Number(now.getMonth())+1 < 10)
         time += '-0'+(Number(now.getMonth())+1);
@@ -31,8 +32,8 @@ function format_date(){
 
 }
 function todolist_fill(){
-    format_date();
     TodoModel.find().sort({priority:-1,date:1}).exec((err,result)=>{
+        format_date();
         todoArray = [];
         _number = 0;
         over = false;
@@ -162,7 +163,7 @@ app.get(['/todo','/todo/:id'],(req,res)=>{
             TodoModel.update({
                 title: todoArray[idx]["title"],
                 date: todoArray[idx]["date"]
-            }, {$set: todoArray[idx]}, (err, out) => {todolist_fill()});
+            }, {$set: todoArray[idx]}, (err, out) => {});
         }
         res.render("todo_watch",{object_arr:todoArray[idx],correct:modify_check,idx:idx});
     }
