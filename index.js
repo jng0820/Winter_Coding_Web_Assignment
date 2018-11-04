@@ -94,8 +94,11 @@ app.post('/todo_modify',(req,res)=> {
             date: todoArray[idx]["date"]
         }, {$set: temp_arr}, (err, out) => {
             if (err) modify_check = false;
-            todolist_fill();
         });
+        todoArray[idx]["title"] = _title;
+        todoArray[idx]["content"] = _content;
+        todoArray[idx]["date"] = _date;
+
         res.redirect('/todo/'+idx);
     }
 });
